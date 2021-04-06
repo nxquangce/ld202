@@ -8,6 +8,7 @@ db/
 incremental_db/
 output_files/
 simulation/
+*.rpt
 
 # SOPC builder project source files (SOPC builder creates many VHDL or Verilog files, that you do not need to store)
 ### sopc_project_name.ptf the list and configuration of components selected in the SOPC gui
@@ -24,7 +25,6 @@ simulation/
 
 # software binary files
 
-/*
 !/*.gitignore
 ##
 !*.bdf
