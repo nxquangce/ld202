@@ -1,0 +1,41 @@
+
+# project files:
+*.qpf
+*.qsf
+
+# project directories
+db/
+incremental_db/
+output_files/
+simulation/
+
+# SOPC builder project source files (SOPC builder creates many VHDL or Verilog files, that you do not need to store)
+### sopc_project_name.ptf the list and configuration of components selected in the SOPC gui
+### sopc_project_name.bsf Block Symbol file (SOPC component symbol file, especially if you modified it)
+
+# Board Description (if you created your own board, the list is incomplete!)
+### board_name/class.ptf
+
+# software source files:
+### tbd
+
+# hardware binary files
+*.sof
+
+# software binary files
+
+/*
+!/*.gitignore
+##
+!*.bdf
+!*.vhd
+!*.v
+!*.ptf
+!*.bsf
+!**/class.ptf
+!*.tbd
+## tbd
+
+!*.tcl
+
+# End of https://www.toptal.com/developers/gitignore/api/alteraquartusii
