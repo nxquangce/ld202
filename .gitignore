@@ -38,4 +38,6 @@ simulation/
 
 !*.tcl
 
+*.bak
+
 # End of https://www.toptal.com/developers/gitignore/api/alteraquartusii
