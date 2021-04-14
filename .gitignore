@@ -2,6 +2,7 @@
 # project files:
 *.qpf
 *.qsf
+*.qws
 
 # project directories
 db/

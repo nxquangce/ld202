@@ -103,7 +103,7 @@ edge_dectect edge1(
 
 reg [17:0] out;
 always @(posedge CLOCK_50) begin
-	if (!rst_out) out <= 0;
+	if (!rst_out_n) out <= 0;
 	else if (edge_out) out <= out + 1'b1;
 end
 
