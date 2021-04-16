@@ -87,14 +87,14 @@ output [06:0] HEX7;
 ////////////////////////////////////////////////////////////////////////////////
 
 wire edge_out, rst_out_n;
-edge_dectect edge0(
+edge_detect edge0(
 	.clk		(CLOCK_50),
 	.type		(2'b10),
 	.trigger	(KEY[0]),
 	.out		(edge_out)
 	);
 
-edge_dectect edge1(
+edge_detect edge1(
 	.clk		(CLOCK_50),
 	.type		(2'b00),
 	.trigger	(KEY[1]),

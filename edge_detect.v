@@ -1,4 +1,4 @@
-module edge_dectect(clk, type, trigger, out);
+module edge_detect(clk, type, trigger, out);
 input 		clk;
 input [1:0] type;
 input 		trigger;
