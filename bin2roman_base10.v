@@ -17,7 +17,7 @@ output [OUT_WIDTH * OUT_NUM - 1 : 0] out;
 
 wire [BIT_WIDTH     - 1 : 0] baseval [BASE_NUM - 1 : 0];
 wire [OUT_WIDTH * 4 - 1 : 0] basesym [BASE_NUM - 1 : 0];
-wire [3:0]                   baseshift [BASE_NUM - 1 : 0];
+wire [2:0]                   baseshift [BASE_NUM - 1 : 0];
 wire [BIT_WIDTH     - 1 : 0] digit1, digit0;
 wire [OUT_WIDTH     - 1 : 0] outpos [OUT_NUM - 1 : 0];
 
@@ -58,22 +58,22 @@ assign basesym[14] = {SYM_NULL, SYM_NULL, SYM_NULL, SYM_L};
 assign basesym[15] = {SYM_NULL, SYM_NULL, SYM_L, SYM_X};
 
 // Base shift
-assign baseshift[0] = 2'd4;
-assign baseshift[1] = 2'd3;
-assign baseshift[2] = 2'd2;
-assign baseshift[3] = 2'd1;
-assign baseshift[4] = 2'd2;
-assign baseshift[5] = 2'd3;
-assign baseshift[6] = 2'd2;
-assign baseshift[7] = 2'd1;
-assign baseshift[8] = 2'd0;
-assign baseshift[9] = 2'd2;
-assign baseshift[10] = 2'd3;
-assign baseshift[11] = 2'd2;
-assign baseshift[12] = 2'd1;
-assign baseshift[13] = 2'd2;
-assign baseshift[14] = 2'd3;
-assign baseshift[15] = 2'd2;
+assign baseshift[0] = 3'd4;
+assign baseshift[1] = 3'd3;
+assign baseshift[2] = 3'd2;
+assign baseshift[3] = 3'd1;
+assign baseshift[4] = 3'd2;
+assign baseshift[5] = 3'd3;
+assign baseshift[6] = 3'd2;
+assign baseshift[7] = 3'd1;
+assign baseshift[8] = 3'd0;
+assign baseshift[9] = 3'd2;
+assign baseshift[10] = 3'd3;
+assign baseshift[11] = 3'd2;
+assign baseshift[12] = 3'd1;
+assign baseshift[13] = 3'd2;
+assign baseshift[14] = 3'd3;
+assign baseshift[15] = 3'd2;
 
 assign digit1 = in / 'd10;
 assign digit0 = in % 'd10;
