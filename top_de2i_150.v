@@ -86,31 +86,37 @@ output [06:0] HEX7;
 //// End Roman Encoder
 ////////////////////////////////////////////////////////////////////////////////
 
-wire edge_out, rst_out_n;
-edge_detect edge0(
-	.clk		(CLOCK_50),
-	.type		(2'b10),
-	.trigger	(KEY[0]),
-	.out		(edge_out)
-	);
+////////////////////////////////////////////////////////////////////////////////
+//// Edge Detector
+//wire edge_out, rst_out_n;
+//edge_detect edge0(
+//	.clk		(CLOCK_50),
+//	.type		(2'b10),
+//	.trigger	(KEY[0]),
+//	.out		(edge_out)
+//	);
+//
+//edge_detect edge1(
+//	.clk		(CLOCK_50),
+//	.type		(2'b00),
+//	.trigger	(KEY[1]),
+//	.out		(rst_out_n)
+//	);
+//
+//reg [17:0] out;
+//always @(posedge CLOCK_50) begin
+//	if (!rst_out_n) out <= 0;
+//	else if (edge_out) out <= out + 1'b1;
+//end
+//
+//assign LEDR = out;
+//
+//assign LEDG[0] = edge_out;
+//assign LEDG[1] = rst_out_n;
+//// Edge Detector
+////////////////////////////////////////////////////////////////////////////////
 
-edge_detect edge1(
-	.clk		(CLOCK_50),
-	.type		(2'b00),
-	.trigger	(KEY[1]),
-	.out		(rst_out_n)
-	);
-
-reg [17:0] out;
-always @(posedge CLOCK_50) begin
-	if (!rst_out_n) out <= 0;
-	else if (edge_out) out <= out + 1'b1;
-end
-
-assign LEDR = out;
-
-assign LEDG[0] = edge_out;
-assign LEDG[1] = rst_out_n;
+blink blink0(CLOCK_50, LEDR[0]);
 
 // Unused ports
 // assign HEX6 = 7'b0;
