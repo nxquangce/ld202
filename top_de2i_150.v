@@ -90,17 +90,17 @@ output [06:0] HEX7;
 //// Edge Detector
 //wire edge_out, rst_out_n;
 //edge_detect edge0(
-//	.clk		(CLOCK_50),
-//	.type		(2'b10),
-//	.trigger	(KEY[0]),
-//	.out		(edge_out)
+//	.clk			(CLOCK_50),
+//	.activetype	(2'b10),
+//	.trigger		(KEY[0]),
+//	.out			(edge_out)
 //	);
 //
 //edge_detect edge1(
-//	.clk		(CLOCK_50),
-//	.type		(2'b00),
-//	.trigger	(KEY[1]),
-//	.out		(rst_out_n)
+//	.clk			(CLOCK_50),
+//	.activetype	(2'b00),
+//	.trigger		(KEY[1]),
+//	.out			(rst_out_n)
 //	);
 //
 //reg [17:0] out;
@@ -116,11 +116,111 @@ output [06:0] HEX7;
 //// Edge Detector
 ////////////////////////////////////////////////////////////////////////////////
 
-blink blink0(CLOCK_50, LEDR[0]);
+////////////////////////////////////////////////////////////////////////////////
+//// Edge Detector vs No Edge Detector for button
+//wire edge_out, rst_out_n;
+//
+//edge_detect resetedge(
+//	.clk        (CLOCK_50),
+//	.activetype (2'b00),
+//	.trigger    (KEY[0]),
+//	.out        (rst_out_n)
+//	);
+//
+//edge_detect edge0(
+//	.clk        (CLOCK_50),
+//	.activetype (2'b10),
+//	.trigger    (KEY[3]),
+//	.out        (edge_out)
+//	);
+//
+//reg [3:0] out0, out1, out2;
+//always @(posedge CLOCK_50) begin
+//	if (!rst_out_n) out0 <= 0;
+//	else if (!KEY[1]) out0 <= out0 + 1'b1;
+//end
+//
+//bin27seg bcd27seg0(
+//   .com(1'b1),
+//   .enb(1'b1),
+//   .dat(out0),
+//   .out(HEX2));
+//
+//
+//wire clkKey = ~KEY[2];
+//wire rstKey = KEY[0];
+//always @(posedge clkKey, negedge rstKey) begin
+//	if (!rstKey) out1 <= 0;
+//	else out1 <= out1 + 1'b1;
+//end
+//
+//bin27seg bcd27seg1(
+//   .com(1'b1),
+//   .enb(1'b1),
+//   .dat(out1),
+//   .out(HEX4));
+//
+//always @(posedge CLOCK_50) begin
+//	if (!rst_out_n) out2 <= 0;
+//	else if (edge_out) out2 <= out2 + 1'b1;
+//end
+//
+//bin27seg bcd27seg2(
+//   .com(1'b1),
+//   .enb(1'b1),
+//   .dat(out2),
+//   .out(HEX6));
+//
+//assign LEDG[3] = edge_out;
+//assign LEDG[2] = clkKey;
+//assign LEDG[1] = ~KEY[1];
+//assign LEDG[0] = rst_out_n;
+//// Edge Detector vs No Edge Detector for button
+////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////
+//// Blinking LED
+// blink blink0(CLOCK_50, LEDR[0]);
+//// Blinking LED
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+//// Bound flasher
+// wire clk_test;
+// blink #(
+//     .MAX_CNT(25'd6249999)
+//     ) 
+// blink0 (CLOCK_50, clk_test);
+
+// wire flick;
+// // edge_detect edge0(
+// // 	.clk			(CLOCK_50),
+// // 	.activetype	(2'b10),
+// // 	.trigger		(KEY[0]),
+// // 	.out			(flick)
+// // 	);
+
+// assign flick = ~KEY[0];
+// assign LEDG[7] = flick;
+// bound_flasher bound_flasher0(clk_test, flick, LEDR[15:0]);
+//// Bound flasher
+////////////////////////////////////////////////////////////////////////////////
+
+
+error_test err(CLOCK_50, SW[0], SW[1], LEDR[0], LEDR[1]);
+
+
+////////////////////////////////////////////////////////////////////////////////
 // Unused ports
+assign LEDR[17:2] = 0;
+//assign LEDG[6:0] = 0;
+assign HEX0 = 7'h7f;
+assign HEX1 = 7'h7f;
+// assign HEX2 = 7'h7f;
+assign HEX3 = 7'h7f;
+// assign HEX4 = 7'h7f;
+assign HEX5 = 7'h7f;
 // assign HEX6 = 7'b0;
-// assign HEX6 = 7'b0;
-// assign HEX6 = 7'b0;
+assign HEX7 = 7'h7f;
 
 endmodule
